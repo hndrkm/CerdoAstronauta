@@ -17,6 +17,20 @@ function rotateDivWithCursor(Id, easeValue) {
 
         targetRotation = degrees;
     });
+    document.addEventListener('touchmove', function(e) {
+        var touch = e.touches[0];
+        var touchX = touch.clientX;
+        var touchY = touch.clientY;
+      
+        var rect = rotatingDiv.getBoundingClientRect();
+        var divX = rect.left + rect.width / 2;
+        var divY = rect.top + rect.height / 2;
+      
+        var radians = Math.atan2(touchX - divX, touchY - divY);
+        var degrees = radians * (180 / Math.PI);
+      
+        targetRotation = degrees;
+      });
 
     function rotate() {
         var delta = targetRotation - currentRotation;
