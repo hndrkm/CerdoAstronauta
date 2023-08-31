@@ -12,8 +12,8 @@ function rotateDivWithCursor(Id, easeValue) {
         var divX = rect.left + rect.width / 2;
         var divY = rect.top + rect.height / 2;
 
-        var radians = Math.atan2(mouseX - divX, mouseY - divY);
-        var degrees = radians * (180 / Math.PI);
+        var radians = Math.atan2(mouseY - divY, mouseX - divX);
+        var degrees = radians * (180/Math.PI);
 
         targetRotation = degrees;
     });
@@ -26,7 +26,7 @@ function rotateDivWithCursor(Id, easeValue) {
         var divX = rect.left + rect.width / 2;
         var divY = rect.top + rect.height / 2;
       
-        var radians = Math.atan2(touchX - divX, touchY - divY);
+        var radians = Math.atan2(-touchY - divY, -touchX - divX);
         var degrees = radians * (180 / Math.PI);
       
         targetRotation = degrees;
@@ -256,15 +256,17 @@ function render() {
   stars.forEach(function (star) {
 
     context.beginPath();
+    context.shadowColor = 'rgb(243, 129, 178' + (0.5+0.5*Math.random()) + ')';
+    context.shadowBlur = 12+ (5*Math.random());
     context.lineCap = 'round';
     context.lineWidth = STAR_SIZE * star.z * scale;
-    context.strokeStyle = 'rgba(100,100,100,' + (0.5 + 0.5 * Math.random()) + ')';
-
+    context.strokeStyle = 'rgba(255,255,255,' + (0.2+0.8*Math.random()) + ')';
+    
     context.beginPath();
     context.moveTo(star.x, star.y);
 
-    var tailX = velocity.x * 2,
-    tailY = velocity.y * 2;
+    var tailX = velocity.x *2,
+    tailY = velocity.y *2;      
 
     // stroke() wont work on an invisible line
     if (Math.abs(tailX) < 0.1) tailX = 0.5;
@@ -285,9 +287,8 @@ function movePointer(x, y) {
     var ox = x - pointerX,
     oy = y - pointerY;
 
-    velocity.tx = velocity.tx + ox / 8 * scale * (touchInput ? 1 : -1);
+    velocity.tx = velocity.tx + ox /  8 * scale * (touchInput ? 1 : -1);
     velocity.ty = velocity.ty + oy / 8 * scale * (touchInput ? 1 : -1);
-
   }
 
   pointerX = x;
