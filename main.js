@@ -99,7 +99,7 @@ generateRandomPosition()
 
 
 
-var STAR_COUNT = (window.innerWidth + window.innerHeight) / 6,
+var STAR_COUNT = (window.innerWidth + window.innerHeight) / 24,
 STAR_SIZE = 10,
 STAR_MIN_SCALE = 0.2,
 OVERFLOW_THRESHOLD = 50;
