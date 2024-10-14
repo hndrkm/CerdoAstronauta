@@ -257,7 +257,7 @@ function render() {
 
     context.beginPath();
     context.shadowColor = 'rgb(243, 129, 178' + (0.5+0.5*Math.random()) + ')';
-    context.shadowBlur = 12+ (5*Math.random());
+    //context.shadowBlur = 12+ (5*Math.random());
     context.lineCap = 'round';
     context.lineWidth = STAR_SIZE * star.z * scale;
     context.strokeStyle = 'rgba(255,255,255,' + (0.2+0.8*Math.random()) + ')';
